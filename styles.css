@@ -11,20 +11,24 @@ body{
     border: 10px solid rgb(42, 9, 58);
     height: 300px;
     width: 240px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
 }
 
 #input {
     width: 220px;
 }
 #inputCont{
-    width: 250px;
+    width: 228px;
 
 }
 #buttonsCont{
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-end;
     margin-top: 10px;
     
     
