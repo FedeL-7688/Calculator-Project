@@ -23,7 +23,7 @@ function operate(a,operator,b) {
 
   switch (operator) {
     case "+":
-      console.log(a + b);
+      
       return a + b;
      
     case "-":
@@ -31,6 +31,10 @@ function operate(a,operator,b) {
     case "*":
       return a * b;
     case "/":
+      if(b == 0){
+        return "error: Can't divide by 0";
+        
+      }
       return a / b;
     default:
       console.log("wrong operation");
@@ -44,6 +48,7 @@ calculatorContainer = document.querySelector(".container");
 calculator = document.createElement("div");
 calculator.id = "calculator";
 calculatorContainer.appendChild(calculator);
+histPlay = document.getElementById("history")
 inputCont = document.querySelector("#inputCont");
 buttonCont = document.querySelector("#buttonsCont");
 calculator.append(inputCont, buttonCont);
@@ -54,10 +59,22 @@ inputField.textContent = "hi";
 
 inputCont.append(inputField);
 //number buttons creation
-
-//from 0 to 3
+// number 0
+  numberZero = document.createElement("div")
+  const btn = document.createElement("button");
+  btn.classList.add("num");
+  btn.textContent = "0";
+  btn.addEventListener("click", () => {inputField.value += btn.textContent
+ if (option == null){
+   num1 = inputField.value
+  }
+  else num2 = inputField.value.split(option)[1];
+  
+  });
+  numberZero.append(btn)
+//from 1 to 3
 firstRow = document.createElement("div")
-for (let i = 0; i <= 3; i++) {
+for (let i = 1; i <= 3; i++) {
   const btn = document.createElement("button");
   btn.classList.add("num");
   btn.textContent = i;
@@ -108,7 +125,7 @@ for (let i = 7;i<=9;i++){
 );
   thirdRow.appendChild(btn);
 }
-buttonCont.append(firstRow,secondRow,thirdRow)
+buttonCont.append(numberZero,firstRow,secondRow,thirdRow)
 
 
 ///operator buttons
@@ -160,14 +177,12 @@ const eqBtn = document.createElement("button")
 
 const n1 = parseFloat(num1)
 const n2 = parseFloat(num2)
-  console.log(inputField.value)
-  console.log("n1 value: ",n1 )
-  console.log(option)
-  console.log("n2 value: ",n2)
-  
 
-  inputField.value += " = " + operate(n1,option,n2)
-
+// histPlay.textContent = operate(n1,option,n2).toFixed(2)
+result = operate(n1,option,n2)
+ 
+  inputField.value = Math.round((result + Number.EPSILON) * 100) / 100
+  num1 = inputField.value
  }
 )
  
@@ -180,6 +195,21 @@ calculator.append(clearBtn)
 clearBtn.addEventListener("click",(e)=>{
   e.preventDefault()
   inputField.value = ""
+  num1 = undefined
+  option = null
+  num2 = undefined
+})
+// delete Button
+const deleteBtn = document.createElement("button")
+deleteBtn.classList.add("operators")
+deleteBtn.textContent = "D"
+calculator.append(deleteBtn)
+deleteBtn.addEventListener("click",()=>{
+  
+  inputField.value = inputField.value.slice(0,-1)
+  if (num1 && operator){
+  num2 = undefined}
+
 })
 
 ///
