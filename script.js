@@ -14,7 +14,7 @@
 // }
 
 num1 = undefined
-option = null
+option = undefined
 num2 = undefined
 result = 0
 
@@ -23,7 +23,7 @@ function operate(a,operator,b) {
 
   switch (operator) {
     case "+":
-      
+   
       return a + b;
      
     case "-":
@@ -178,11 +178,10 @@ const eqBtn = document.createElement("button")
 const n1 = parseFloat(num1)
 const n2 = parseFloat(num2)
 
-// histPlay.textContent = operate(n1,option,n2).toFixed(2)
 result = operate(n1,option,n2)
  
-  inputField.value = Math.round((result + Number.EPSILON) * 100) / 100
-  num1 = inputField.value
+inputField.value = Math.round((result + Number.EPSILON) * 100) / 100
+num1 = inputField.value
  }
 )
  
@@ -196,7 +195,7 @@ clearBtn.addEventListener("click",(e)=>{
   e.preventDefault()
   inputField.value = ""
   num1 = undefined
-  option = null
+  option = undefined
   num2 = undefined
 })
 // delete Button
@@ -207,9 +206,27 @@ calculator.append(deleteBtn)
 deleteBtn.addEventListener("click",()=>{
   
   inputField.value = inputField.value.slice(0,-1)
-  if (num1 && operator){
-  num2 = undefined}
 
+
+  const total = inputField.value;
+
+  if (!option) {
+    num1 = total || undefined;
+    num2 = undefined;
+  } else {
+    const splitted = text.split(option);
+
+    num1 = splitted[0] || undefined;
+    num2 = splitted[1] || undefined;
+
+    if (total[total.length - 1] === option) {
+      num2 = undefined;
+    }
+    if (!total.includes(option)) {
+      option = undefined;
+      num2 = undefined;
+    }
+  }
 })
 
 ///
