@@ -167,10 +167,11 @@ divBtn.addEventListener("click", () => {
 });
 
 //equal
+
  const eqBtn = document.createElement("button");
  eqBtn.classList.add("operators");
  eqBtn.textContent = "=";
- calculator.append(eqBtn);
+ numberZero.append(eqBtn);
  
  eqBtn.addEventListener("click", () => {
   
@@ -186,23 +187,23 @@ divBtn.addEventListener("click", () => {
 
 //decimal Point
 
-decPoint = document.createElement("button")
-decPoint.classList.add("operators")
-decPoint.textContent = ".";
-calculator.append(decPoint)
-
-decPoint.addEventListener("click",()=>{
+ decPoint = document.createElement("button")
+ decPoint.classList.add("operators")
+ decPoint.textContent = ".";
+ calculator.append(decPoint)
+ 
+  decPoint.addEventListener("click",()=>{
   let currNum = option == null? inputField.value : inputField.value.split(option)[1]
   if(currNum && currNum.includes(".")){
     return
   }else inputField.value += ".";
-})
+ })
 
 //clear
 const clearBtn = document.createElement("button");
 clearBtn.classList.add("operators");
 clearBtn.textContent = "C";
-calculator.append(clearBtn);
+numberZero.append(clearBtn);
 clearBtn.addEventListener("click", (e) => {
   e.preventDefault();
   inputField.value = "";
